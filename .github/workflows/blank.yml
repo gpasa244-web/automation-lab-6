@@ -20,17 +20,21 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Check Python version
-        run: python --version
-
       - name: Check repository files
         run: |
+          echo "Checking project files..."
           test -f README.md
           test -f requirements.txt
           test -f .gitignore
           echo "All required files exist"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Check Python version
+        run: python --version
+
+      - name: Check installed packages
+        run: python -m pip list
